@@ -1,6 +1,6 @@
 # Raspi_RTKBase
 
-## [Download Raspi Image](https://github.com/RaspAP/raspap-webgui)
+## [Download Raspi Image](https://github.com/RaspAP/raspap-webgui/releases)
 
 ```
 wget https://github.com/RaspAP/raspap-webgui/releases/download/3.3.2/raspap-bookworm-arm64-lite-3.3.2.img.zip
