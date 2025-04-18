@@ -36,3 +36,11 @@ make
 
 sudo cp str2str /usr/local/bin/
 ```
+
+
+## Example
+
+Read ubx data from serial and stream into tcp server:
+```
+str2str -in serial://ttyACM0:115200:8:n:1#ubx -out tcpsvr://:5016#rtcm3 -msg '1004,1005(10),1006,1008(10),1012,1019,1020,1033(10),1042,1045,1046,1077,1087,1097,1107,1127,1230' -p 47.0983869 -1.2655108 36.40
+```
