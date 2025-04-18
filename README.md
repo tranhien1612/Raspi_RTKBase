@@ -25,3 +25,14 @@ sudo ./install.sh --all release
 Open a web browser to `http://ip_of_your_sbc` (the script will try to show you this ip address). Default password is admin.
 
 Config Serial and NTRIPCaster.
+
+
+## Install str2str
+
+```
+git clone https://github.com/tomojitakasu/RTKLIB.git
+cd RTKLIB/app/str2str/gcc
+make
+
+sudo cp str2str /usr/local/bin/
+```
