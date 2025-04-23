@@ -3,7 +3,7 @@
 #20.9983869 105.8655108 10.40
 if [ "$EUID" -ne 0 ]; then
     echo "Error: This script must be run as root or with sudo privileges."
-    echo "Usage: sudo ./rtkbase.sh"
+    echo "Usage: sudo ./autoAP.sh"
     exit 1
 fi
 
@@ -15,25 +15,25 @@ function askyn() {
         *) return 1 ;;
     esac
 }
+
 # RTKBase
-echo ""
-echo -n "----------------- Install RTKBase -----------------"
-
-if ! askyn "Are you ready to install rtkbase"
-then
-    exit 0
+if askyn "Are you ready to install RTKBase"; then
+    cd ~
+    wget https://raw.githubusercontent.com/Stefal/rtkbase/master/tools/install.sh -O install.sh
+    chmod +x install.sh
+    sudo ./install.sh --all release
 fi
-
-cd ~
-wget https://raw.githubusercontent.com/Stefal/rtkbase/master/tools/install.sh -O install.sh
-chmod +x install.sh
-sudo ./install.sh --all release
 
 # AP Mode
 DHCPCD_FILE="/etc/dhcpcd.conf"
 DNSMASQ_FILE="/etc/dnsmasq.conf"
 HOSTAPD_FILE="/etc/hostapd/hostapd.conf"
 HOSTAPD_CONF_FILE="/etc/default/hostapd"
+
+if ! askyn "Are you ready to set up AP mode"
+then
+    exit 0
+fi
 
 echo ""
 echo -n "SSID for Access Point mode: "
@@ -62,13 +62,6 @@ echo " Access Point password: $appsk"
 echo " Access Point IP addr:  $apip"
 echo ""
 
-if ! askyn "Are you ready to set up ap mode"
-then
-    echo ""
-    echo "% No changes have been made to your system"
-    exit 0
-fi
-
 echo "Install lib......"
 sudo apt-get update
 sudo apt install dnsmasq hostapd -y
@@ -76,10 +69,6 @@ sudo apt install dnsmasq hostapd -y
 echo "Disable dnsmasq and hostapd"
 sudo systemctl stop dnsmasq
 sudo systemctl stop hostapd
-
-# interface wlan0
-# static ip_address=192.168.10.1/24
-# nohook wpa_supplicant
 
 echo "Edit /etc/dhcpcd.conf"
 echo "interface wlan0" >> "$DHCPCD_FILE"
