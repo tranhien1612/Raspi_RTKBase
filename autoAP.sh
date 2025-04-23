@@ -15,6 +15,11 @@ function askyn() {
     esac
 }
 
+DHCPCD_FILE="/etc/dhcpcd.conf"
+DNSMASQ_FILE="/etc/dnsmasq.conf"
+HOSTAPD_FILE="/etc/hostapd/hostapd.conf"
+HOSTAPD_CONF_FILE="/etc/default/hostapd"
+
 echo ""
 echo -n "SSID for Access Point mode: "
 apssid=$(read ans; echo $ans)
@@ -58,7 +63,6 @@ sudo systemctl stop dnsmasq
 sudo systemctl stop hostapd
 
 echo "Edit /etc/dhcpcd.conf"
-DHCPCD_FILE="/etc/dnsmasq.conf"
 echo "interface wlan0" >> "$DHCPCD_FILE"
 echo "static ip_address=$apip/24" >> "$DHCPCD_FILE"
 echo "nohook wpa_supplicant" >> "$DHCPCD_FILE"
@@ -66,7 +70,6 @@ echo "nohook wpa_supplicant" >> "$DHCPCD_FILE"
 sudo service dhcpcd restart
 
 echo "Edit /etc/dnsmasq.conf"
-DNSMASQ_FILE="/etc/dnsmasq.conf"
 sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
 cat <<EOF >> "$DNSMASQ_FILE"
 interface=wlan0
@@ -76,7 +79,6 @@ EOF
 sudo systemctl reload dnsmasq
 
 echo "Create /etc/hostapd/hostapd.conf"
-HOSTAPD_FILE="/etc/hostapd/hostapd.conf"
 cat <<EOF >> "$HOSTAPD_FILE"
 country_code=US
 interface=wlan0
@@ -90,7 +92,6 @@ wpa_pairwise=TKIP CCMP
 rsn_pairwise=CCMP
 EOF
 
-HOSTAPD_CONF_FILE="/etc/default/hostapd"
 echo "DAEMON_CONF=\"/etc/hostapd/hostapd.conf\"" >> "$HOSTAPD_CONF_FILE"
 
 sudo systemctl unmask hostapd
