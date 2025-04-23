@@ -2,7 +2,7 @@
 
 
 ## Install bulleye Image for Raspi
-Example: Using Raspbery Pi Imager to flash image (Raspberry Pi OS - 64Bit) into SDCard
+Example: Using Raspbery Pi Imager to flash image `Raspberry Pi OS(Lagacy, 64bit) Lite` into SDCard
 
 ## Install lib for setup AP mode
 
