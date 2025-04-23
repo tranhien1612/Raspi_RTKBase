@@ -63,6 +63,8 @@ echo "interface wlan0" >> "$DHCPCD_FILE"
 echo "static ip_address=$apip/24" >> "$DHCPCD_FILE"
 echo "nohook wpa_supplicant" >> "$DHCPCD_FILE"
 
+sudo service dhcpcd restart
+
 echo "Edit /etc/dnsmasq.conf"
 DNSMASQ_FILE="/etc/dnsmasq.conf"
 sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
