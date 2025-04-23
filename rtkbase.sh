@@ -3,7 +3,7 @@
 #20.9983869 105.8655108 10.40
 if [ "$EUID" -ne 0 ]; then
     echo "Error: This script must be run as root or with sudo privileges."
-    echo "Usage: sudo ./autoAP.sh"
+    echo "Usage: sudo ./rtkbase.sh"
     exit 1
 fi
 
