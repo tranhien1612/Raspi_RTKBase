@@ -91,7 +91,7 @@ rsn_pairwise=CCMP
 EOF
 
 HOSTAPD_CONF_FILE="/etc/default/hostapd"
-echo "DAEMON_CONF=\"/etc/hostapd/hostapd.conf" >> "$HOSTAPD_CONF_FILE"
+echo "DAEMON_CONF=\"/etc/hostapd/hostapd.conf\"" >> "$HOSTAPD_CONF_FILE"
 
 sudo systemctl unmask hostapd
 sudo systemctl enable hostapd
