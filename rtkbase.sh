@@ -16,6 +16,8 @@ function askyn() {
     esac
 }
 
+sudo apt-get update
+
 # RTKBase
 if askyn "Are you ready to install RTKBase"; then
     cd ~
@@ -63,7 +65,6 @@ echo " Access Point IP addr:  $apip"
 echo ""
 
 echo "Install lib......"
-sudo apt-get update
 sudo apt install dnsmasq hostapd -y
 
 echo "Disable dnsmasq and hostapd"
