@@ -19,12 +19,12 @@ function askyn() {
 sudo apt-get update
 
 # RTKBase
-if askyn "Are you ready to install RTKBase"; then
-    cd ~
-    wget https://raw.githubusercontent.com/Stefal/rtkbase/master/tools/install.sh -O install.sh
-    chmod +x install.sh
-    sudo ./install.sh --all release
-fi
+# if askyn "Are you ready to install RTKBase"; then
+#     cd ~
+#     wget https://raw.githubusercontent.com/Stefal/rtkbase/master/tools/install.sh -O install.sh
+#     chmod +x install.sh
+#     sudo ./install.sh --all release
+# fi
 
 # AP Mode
 DHCPCD_FILE="/etc/dhcpcd.conf"
